@@ -7,7 +7,7 @@ import Link from "next/link"
 import { buttonVariants } from "./ui/button"
 import Image from "next/image"
 
- const itemCount = 0
+ const itemCount = 7
  const fee = 1.456
 
 const Cart = () => {
