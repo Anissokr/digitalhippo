@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/Navbar";
 import Provider from "@/components/Provider";
+ 
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,6 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full">
+      <link rel="icon" href="/favicon.ico" sizes="any" />
       <body className={cn("relative h-full font-san antialiased", inter.className)}>
         <main className="relative flex flex-col min-h-screen">
           <Provider> 
