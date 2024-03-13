@@ -11,6 +11,8 @@ import {zodResolver} from '@hookform/resolvers/zod'
 
 import { AuthCredentialsValidator, TAuthCredentialsValidator } from "@/lib/validators/account-credentials-validator"
 import { trpc } from "@/trpc/client"
+import { toast } from "sonner"
+import { ZodError } from "zod"
 const page = () => {
 
   
@@ -23,8 +25,19 @@ const page = () => {
        })
      
 
-    const {mutate, isLoading} = trpc.auth.createPayloadUser.useMutation({
-
+    const {mutate, isLoading} = 
+      trpc.auth.createPayloadUser.useMutation({
+        onError: (err) => {
+          if(err.data?.code === "CONFLICT") {
+            toast.error("This email is already in use. sign in instead?")
+            return
+          }
+          if(err instanceof ZodError) {
+              toast.error(err.issues[0].message)
+              return
+          }
+          toast.error('Something went wrong. Please try again')
+        }
     })
     const onSubmit = ({
       email,

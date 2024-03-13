@@ -12,7 +12,7 @@ interface VerifyEmailProps {
 
 const VerifyEmail = ({ token }: VerifyEmailProps) => {
   const { data, isLoading, isError } =
-    trpc.auth.VerifyEmail.useQuery({
+    trpc.auth.verifyEmail.useQuery({
       token,
     })
 
